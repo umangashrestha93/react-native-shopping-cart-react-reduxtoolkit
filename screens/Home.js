@@ -1,8 +1,11 @@
-import { View, Text, Button, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { add } from '../redux/cartSlice'
 
 const Home = () => {
     const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
 
     const getProduct = async () => {
         const url = "https://fakestoreapi.com/products"
@@ -14,6 +17,10 @@ const Home = () => {
     useEffect(() => {
         getProduct()
     }, [])
+    
+    const handleAdd = (product)=>{
+        dispatch(add(product))
+    }
 
     return (
         <ScrollView>
@@ -28,7 +35,7 @@ const Home = () => {
                         <Text styles={styles.productTitle}>{product.title}</Text>
                         <Text styles={styles.productPrice}>{product.price}</Text>
                         <TouchableOpacity style={styles.addToCartButton}>
-                            <Text styles={styles.addToCartButtonText}>Add to cart</Text>
+                            <Text style={{color: 'white'}} onPress={()=>handleAdd(product)}>Add to cart</Text>
                         </TouchableOpacity>
                     </View>
                 ))
@@ -44,10 +51,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        padding: 16, 
+        padding: 12, 
     },
     productContainer: {
-        width: '48%', 
+        width: '49%', 
         marginBottom: 16, 
         borderWidth: 1,
         borderColor: '#ccc',
@@ -71,15 +78,11 @@ const styles = StyleSheet.create({
         marginBottom: 8, 
     },
     addToCartButton: {
-        backgroundColor: '#007BFF',
+        backgroundColor: 'black',
         paddingVertical: 8,
         paddingHorizontal: 16,
         borderRadius: 4,
         alignItems: 'center',
-    },
-    addToCartButtonText: {
-        color: '#fff',
-        fontWeight: 'bold',
     },
 });
 
