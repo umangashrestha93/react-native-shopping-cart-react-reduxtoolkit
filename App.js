@@ -4,36 +4,42 @@ import Home from './screens/Home'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import store from './redux/store'
 import Cart from './screens/Cart'
 
-const App = () => {
-  const Stack = createStackNavigator()
-  // const navigation = useNavigation()
+// Custom Cart Icon Component
+const CartIcon = () => {
+  const navigation = useNavigation()
+  const items = useSelector(state => state.cart)
 
   const handleAddToCart = () => {
-    console.log('button clicked')
-    // navigation.navigate('Cart')
+    navigation.navigate('Cart')
   }
 
   return (
+    <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15 }}>
+      {items.length ? (<Text>{items.length}</Text>) : (<Ionicons name="cart" size={30} color="black" />)}
+      {/* <Text>items:{items.length} </Text> */}
+    </TouchableOpacity>
+  )
+}
+
+const App = () => {
+  const Stack = createStackNavigator()
+
+  return (
     <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerRight: () => (
-            <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15 }}>
-              <Ionicons name="cart" size={30} color="black" />
-              {/* <Text>items:{items.length} </Text> */}
-            </TouchableOpacity>
-          ),
-        }}
-      >
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Cart' component={Cart}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerRight: () => <CartIcon />,
+          }}
+        >
+          <Stack.Screen name='Home' component={Home} />
+          <Stack.Screen name='Cart' component={Cart}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   )
 }
