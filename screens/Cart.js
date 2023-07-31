@@ -17,6 +17,9 @@ const Cart = () => {
     return (
         <ScrollView>
             <View style={style.cartContainer}>
+                <TouchableOpacity>
+                <Text style={{flexDirection:'row', textAlign: 'right', marginBottom: 5, marginRight: 5, fontSize: 15, color: 'red'}}>Delete</Text>
+                </TouchableOpacity>
                 {
                     cardItem.map((item, i)=>(
                         <View style={style.itemContainer} key={`cardItem${i}`}>
@@ -34,6 +37,9 @@ const Cart = () => {
                             <TouchableOpacity style={style.minusBtn}>
                                 <Text style={style.minusBtnText}>-</Text>
                             </TouchableOpacity>
+                            <View>
+                                <Text style={{marginRight: 7 }}>0</Text>
+                            </View>
                             <TouchableOpacity style={style.plusBtn}>
                                 <Text style={style.plusBtnText}>+</Text>
                             </TouchableOpacity>
@@ -56,11 +62,12 @@ const style = StyleSheet.create({
     itemContainer: {
         flexDirection: 'row',
         marginBottom: 10,
-        borderWidth: 1,
+        borderWidth: 0.2,
         borderColor: 'gray',
         borderRadius: 3,
         padding: 5,
         alignItems: 'center', 
+        backgroundColor: 'white'
     },
     imageContainer: {
         borderRadius: 3,
@@ -94,7 +101,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 3,
         padding: 2,
-        marginRight: 20
+        marginRight: 5
 
     },
     minusBtnText:{
@@ -107,22 +114,23 @@ const style = StyleSheet.create({
         borderRadius: 3,
         padding: 2,
         marginRight: 5
-
     },
     plusBtnText:{
         color: 'white',
     },
     addToCartBtn:{
         position: 'absolute',
-        top: 90,
+        top: 95,
+        width: 90,
         marginLeft: 190,
         backgroundColor: 'black',
         borderRadius: 3,
-        padding: 3,
+        padding: 5,
 
     },
     addToCartBtnText:{
-        color: 'white'
+        color: 'white',
+        textAlign: 'center',
     }
 
 })
