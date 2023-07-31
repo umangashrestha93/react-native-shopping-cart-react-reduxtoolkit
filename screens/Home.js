@@ -8,10 +8,18 @@ const Home = () => {
     const dispatch = useDispatch()
 
     const getProduct = async () => {
+        try{
         const url = "https://fakestoreapi.com/products"
         const result = await fetch(url)
+        // console.log(result)
         const data = await result.json()
+        // console.log(data)
         setProducts(data)
+        } catch(error){
+            console.log("Got this error.");
+            console.log(error)
+        }
+
     }
 
     useEffect(() => {

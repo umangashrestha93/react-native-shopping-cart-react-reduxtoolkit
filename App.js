@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import Home from './screens/Home'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -18,8 +18,12 @@ const CartIcon = () => {
   }
 
   return (
-    <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15 }}>
-      {items.length ? (<Text>{items.length}</Text>) : (<Ionicons name="cart" size={30} color="black" />)}
+    <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15, backgroundColor: 'black', borderRadius: 50, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+      <Ionicons name="cart" size={30} color="white" />
+      {items.length ? (
+      <View style={{position: 'absolute', top: -10, left: 20, backgroundColor: 'black', width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderRadius: 20}}>
+          <Text style={app.cartLength}>{items.length}</Text>
+        </View>) : null}
       {/* <Text>items:{items.length} </Text> */}
     </TouchableOpacity>
   )
@@ -43,5 +47,23 @@ const App = () => {
     </Provider>
   )
 }
+
+const app = StyleSheet.create({
+  cartLength:{
+      fontSize: 15,
+      // backgroundColor: 'black',
+      // width: 20,
+      // height: 20,
+      // borderRadius: 60,
+      color: 'white',
+      // padding: 2,
+      // left: 5,
+
+      
+
+
+
+  }
+})
 
 export default App
