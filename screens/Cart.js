@@ -2,13 +2,18 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Dimensions
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { remove } from '../redux/cartSlice'
+import { useNavigation } from '@react-navigation/native'
 
 const Cart = () => {
     const cardItem = useSelector((state)=> state.cart)
     const dispatch = useDispatch()
+    const navigation = useNavigation()
 
     const handleRemove = (id)=>{
         dispatch(remove(id))
+    }
+    const handleDelete = ()=>{
+        navigation.navigate('Login')
     }
     const windowWidth = Dimensions.get('window').width;
     const imageWidth = windowWidth * 0.3;
@@ -18,7 +23,10 @@ const Cart = () => {
         <ScrollView>
             <View style={style.cartContainer}>
                 <TouchableOpacity>
-                <Text style={{flexDirection:'row', textAlign: 'right', marginBottom: 5, marginRight: 5, fontSize: 15, color: 'red'}}>Delete</Text>
+                <Text
+                 style={{flexDirection:'row', textAlign: 'right', marginBottom: 5, marginRight: 5, fontSize: 15, color: 'red'}}
+                    onPress={()=>handleDelete()}
+                >Delete</Text>
                 </TouchableOpacity>
                 {
                     cardItem.map((item, i)=>(

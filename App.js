@@ -7,6 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Provider, useSelector } from 'react-redux'
 import store from './redux/store'
 import Cart from './screens/Cart'
+import LoginScreen from './screens/LoginScreen'
+import SignupScreen from './screens/SignupScreen'
 
 // Custom Cart Icon Component
 const CartIcon = () => {
@@ -42,6 +44,8 @@ const App = () => {
         >
           <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Cart' component={Cart}/>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name='Register' component={SignupScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
