@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Button} from 'react-native'
 import React from 'react'
 import { TextInput } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const SignupScreen = () => {
+  const navigation = useNavigation()
   return (
     <View style={registerUI.registerContainer}>
         <View style={registerUI.registerImage}>
@@ -20,6 +22,12 @@ const SignupScreen = () => {
       <TouchableOpacity style={registerUI.registerBtn}>
             <Text style={registerUI.registerTextBtn}>Register Now</Text>
       </TouchableOpacity>
+      <View style={{marginTop: 55}}>
+            <Text>Already have an account?</Text>
+            <TouchableOpacity style={{marginLeft: 170, top: -17}} onPress={()=>navigation.navigate('Login')}>
+                <Text style={{color: 'blue'}}>Login</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   )
 }
