@@ -70,22 +70,23 @@ const Cart = () => {
             {/* <TouchableOpacity style={style.cartRemoveBtn}>
                                 <Text onPress={()=>handleRemove(item.id)}>Remove</Text>
                             </TouchableOpacity> */}
-            <TouchableOpacity style={style.minusBtn}>
+
+            {cartItems !== 0 ? (    <TouchableOpacity style={style.minusBtn}>
               <Text style={style.minusBtnText}>-</Text>
-            </TouchableOpacity>
-            <View>
-              <Text style={{ marginRight: 7 }}>0</Text>
-            </View>
-            <TouchableOpacity style={style.plusBtn}>
+            </TouchableOpacity>): null}
+                {cartItems !== 0? (<Text style={{ marginRight: 7 }}>0</Text>): null}
+              
+           {cartItems !== 0?( <TouchableOpacity style={style.plusBtn}>
               <Text style={style.plusBtnText}>+</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>): null}
+           
             <TouchableOpacity style={style.addToCartBtn}>
               <Text style={style.addToCartBtnText}>Add to cart</Text>
             </TouchableOpacity>
           </View>
         ))}
       </ScrollView>
-      <View
+      {cartItems.length > 0? (<View
         style={{
           justifyContent: 'space-evenly',
           alignItems: "center",
@@ -110,7 +111,8 @@ const Cart = () => {
             <Text style={{textAlign: 'center'}}>checkout</Text>
         </TouchableOpacity>
         </View>
-      </View>
+      </View>): null}
+      
     </View>
   );
 };
