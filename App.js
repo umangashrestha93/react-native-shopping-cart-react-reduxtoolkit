@@ -9,8 +9,10 @@ import store from './redux/store'
 import Cart from './screens/Cart'
 import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Account from './screens/Account'
 
-// Custom Cart Icon Component
+
 const CartIcon = () => {
   const navigation = useNavigation()
   const items = useSelector(state => state.cart)
@@ -21,7 +23,6 @@ const CartIcon = () => {
 
   return (
     <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15, backgroundColor: 'black', borderRadius: 50, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-      <Ionicons name="cart" size={30} color="white" />
       {items.length ? (
       <View style={{position: 'absolute', top: -10, left: 20, backgroundColor: 'black', width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderRadius: 20}}>
           <Text style={app.cartLength}>{items.length}</Text>
@@ -31,22 +32,62 @@ const CartIcon = () => {
   )
 }
 
-const App = () => {
+ function TabNavigator(){
+  const Tab = createBottomTabNavigator()
+  const items = useSelector(state => state.cart)
+  console.log({items})
+  return(
+    <Tab.Navigator screenOptions={{headerShown: false,
+      
+     }}>
+      <Tab.Screen name='Home' component={Home} options={{
+        tabBarIcon: ()=>(
+          <Ionicons name='home-outline' size={30}/>
+        )
+      }}/>
+      <Tab.Screen name='Cart' component={Cart} options={{
+        tabBarIcon: ()=>(
+          <View>
+            <Ionicons name='cart-outline' size={30}/>
+            {items.length ? (<Text style={{position: 'absolute', marginLeft: 28}}>{items.length}</Text>): null}
+            
+          </View>
+        )
+      }}/>
+      <Tab.Screen name='Account' component={Account} options={{
+        tabBarIcon: ()=>(
+          <Ionicons name='person-outline' size={30}/>
+        )
+      }} />
+    </Tab.Navigator>
+  )
+ }
+ function StackNavigator(){
   const Stack = createStackNavigator()
-
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator
+  return(
+    <Stack.Navigator>
+       <Stack.Navigator
           screenOptions={{
             headerRight: () => <CartIcon />,
           }}
         >
-          <Stack.Screen name='Home' component={Home} />
-          <Stack.Screen name='Cart' component={Cart}/>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name='Register' component={SignupScreen} />
+          {/* <Stack.Screen name='Home' component={Home} />
+          <Stack.Screen name='Cart' component={Cart}/> */}
+          
+        
         </Stack.Navigator>
+    </Stack.Navigator>
+  )
+ }
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+          <TabNavigator />
+          {/* <StackNavigator /> */}
       </NavigationContainer>
     </Provider>
   )

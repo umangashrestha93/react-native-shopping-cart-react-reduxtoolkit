@@ -9,20 +9,19 @@ import {
 } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { remove } from "../redux/cartSlice";
-import { useNavigation } from "@react-navigation/native";
+import { decrementQuantity, incrementQuantity, remove } from "../redux/cartSlice";
+// import { useNavigation } from "@react-navigation/native";
 
 const Cart = () => {
   const cardItem = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+//   const navigation = useNavigation();
   const cartItems = useSelector(state => state.cart)
 
-  const handleRemove = (id) => {
-    dispatch(remove(id));
+  const handleRemove = (item) => {
+    dispatch(remove(item));
   };
   const handleDelete = () => {
-    navigation.navigate("Login");
   };
 
   const getTotal = ()=>{
@@ -35,8 +34,20 @@ const Cart = () => {
   const windowWidth = Dimensions.get("window").width;
   const imageWidth = windowWidth * 0.3;
   const imageHeight = imageWidth;
-
+  const decreaseQuantity = (item)=>{
+    if(item.quantity == 1){
+      dispatch(remove(item))
+    }else{
+      dispatch(decrementQuantity(item))
+    }
+  }
+  const increaseQuantity = (item) => {
+    dispatch(incrementQuantity(item))
+  }
   return (
+    <>
+    <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, borderRadius: 2, borderWidth: 0.1}}>
+    </View>
     <View style={style.cartContainer}>
       <TouchableOpacity>
         <Text
@@ -45,8 +56,9 @@ const Cart = () => {
             textAlign: "right",
             marginBottom: 5,
             marginRight: 5,
-            fontSize: 15,
+            fontSize: 18,
             color: "red",
+            top: -15
           }}
           onPress={() => handleDelete()}
         >
@@ -71,12 +83,12 @@ const Cart = () => {
                                 <Text onPress={()=>handleRemove(item.id)}>Remove</Text>
                             </TouchableOpacity> */}
 
-            {cartItems !== 0 ? (    <TouchableOpacity style={style.minusBtn}>
+            {cartItems !== 0 ? (    <TouchableOpacity style={style.minusBtn} onPress={()=> decreaseQuantity(item)}>
               <Text style={style.minusBtnText}>-</Text>
             </TouchableOpacity>): null}
-                {cartItems !== 0? (<Text style={{ marginRight: 7 }}>0</Text>): null}
+                {cartItems !== 0? (<Text style={{ marginRight: 7 }}>{item.quantity}</Text>): null}
               
-           {cartItems !== 0?( <TouchableOpacity style={style.plusBtn}>
+           {cartItems !== 0?( <TouchableOpacity style={style.plusBtn} onPress={()=> increaseQuantity(item)}>
               <Text style={style.plusBtnText}>+</Text>
             </TouchableOpacity>): null}
            
@@ -84,22 +96,25 @@ const Cart = () => {
               <Text style={style.addToCartBtnText}>Add to cart</Text>
             </TouchableOpacity>
           </View>
+          
         ))}
       </ScrollView>
+      
+
       {cartItems.length > 0? (<View
         style={{
           justifyContent: 'space-evenly',
           alignItems: "center",
-        flexDirection: 'row',
+         flexDirection: 'row',
           position: "absolute",
           backgroundColor: "white",
           width: "100%",
           height: 70,
           bottom: 0,
-        //   marginLeft: 12,
+          marginLeft: 12,
           borderWidth: 0.2,
           borderColor: "gray",
-          borderRadius: 20,
+          borderRadius: 3,
         }}
       >
         <View style={{width: '50%', justifyContent: 'center', alignItems: "center", height: '100%'}}>
@@ -114,6 +129,7 @@ const Cart = () => {
       </View>): null}
       
     </View>
+    </>
   );
 };
 
