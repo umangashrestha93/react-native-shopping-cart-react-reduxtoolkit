@@ -20,7 +20,7 @@ const cartSlice = createSlice({
                 itemInCart.quantity++;
         },
         decrementQuantity: (state, action)=>{
-            const itemInCart = state.find((item)=> item.id !== action.payload.id)
+            const itemInCart = state.find((item)=> item.id == action.payload.id)
             if(itemInCart.quantity == 1){
                 const removeFromCart = state.filter((item)=> item.id !== action.payload.id)
                 state = removeFromCart
@@ -28,12 +28,12 @@ const cartSlice = createSlice({
                 itemInCart.quantity--;
             }
         },
-        remove:(state, action)=>{
+        removeFromCart:(state, action)=>{
             console.log("This is removing item", action.payload.id)
             const removeFromCart = state.filter((item)=> item.id !== action.payload.id)
             state = removeFromCart
         }
     }
 })
-export const {add, remove, incrementQuantity, decrementQuantity} = cartSlice.actions
+export const {add, removeFromCart, incrementQuantity, decrementQuantity} = cartSlice.actions
 export default cartSlice.reducer
