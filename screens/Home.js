@@ -11,11 +11,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/cartSlice";
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
-  const cardItems = useSelector((state)=> state.cart)
+  // const cardItems = useSelector((state)=> state.cart)
   const dispatch = useDispatch();
 
   const getProduct = async () => {
@@ -51,6 +52,7 @@ const Home = () => {
   };
   return (
     <>
+    <StatusBar style={{backgroundColor: 'gray'}}/>
     <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, marginBottom: 28}}>
          <View
             style={{

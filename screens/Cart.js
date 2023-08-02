@@ -20,7 +20,12 @@ const Cart = () => {
   const cartItems = useSelector(state => state.cart)
   const [isChecked, setIsChecked] = useState(false)
 
+  console.log({cartItems})
+  console.log({cardItem})
+  console.log('hello')
+
   const handleRemove = (item) => {
+    console.log({item})
     dispatch(removeFromCart(item));
   };
 
@@ -68,20 +73,7 @@ const Cart = () => {
     ): (
       <View style={style.cartContainer}>
       <TouchableOpacity>
-        <Text
-          style={{
-            flexDirection: "row",
-            textAlign: "right",
-            marginBottom: 5,
-            marginRight: 5,
-            fontSize: 18,
-            color: "red",
-            top: -15
-          }}
-          onPress={() => handleRemove()}
-        >
-          Delete
-        </Text>
+      
       </TouchableOpacity>
       <ScrollView style={{flex: 1}}>
         {cardItem.map((item, i) => (
