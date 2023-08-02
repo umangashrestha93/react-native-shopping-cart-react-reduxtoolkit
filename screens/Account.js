@@ -6,15 +6,21 @@ const Account = () => {
     const navigation = useNavigation()
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View style= {{backgroundColor: 'black', width: 70, padding: 8, marginBottom: 10, borderRadius: 4}}>
+        <View style= {{backgroundColor: 'white', width: 70, padding: 8, marginBottom: 10, borderRadius: 4,}}>
             <TouchableOpacity>
-            <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
+            <Text style={{color: 'black', textAlign: 'center'}}>Login</Text>
             </TouchableOpacity>
             </View>
-            <View style= {{backgroundColor: 'black', width: 70, padding: 8, marginBottom: 10, borderRadius: 4}}>
+            <View style= {{backgroundColor: 'white', width: 70, padding: 8, marginBottom: 10, borderRadius: 4}}>
                 <TouchableOpacity>
-            <Text style={{color: 'white', textAlign: 'center'}}>Register</Text>
+            <Text style={{color: 'black', textAlign: 'center'}}>Register</Text>
             </TouchableOpacity>
+            </View>
+            <View style={{flex: 1, justifyContent: 'center',backgroundColor: 'white', width: '100%', height: '8%', position: 'absolute', top: 35}}>
+                  <Text style={{textAlign: 'center', textAlignVertical: 'center', fontSize: 17, fontWeight: '500'}}>My Account</Text>
+            </View>
+            <View style={{backgroundColor: 'black', width: '99%', height: '25%', borderRadius: 10, position: 'absolute', top: 99 }}>
+
             </View>
         
     </View>

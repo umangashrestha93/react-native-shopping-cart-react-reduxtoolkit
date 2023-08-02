@@ -32,15 +32,15 @@ const Home = () => {
     }
   };
 
-  const handleSearch = async (text) => {
-    setSearch(text);
-    const url = `https://fakestoreapi.com/products?q=${text}`;
-    let result = await fetch(url);
-    result = await result.json();
-    if (result) {
-      setProducts(result);
-    }
-  };
+  // const handleSearch = async (text) => {
+  //   setSearch(text);
+  //   const url = `https://fakestoreapi.com/products?q=${text}`;
+  //   let result = await fetch(url);
+  //   result = await result.json();
+  //   if (result) {
+  //     setProducts(result);
+  //   }
+  // };
 
   useEffect(() => {
     getProduct();
@@ -49,10 +49,6 @@ const Home = () => {
   const handleAdd = (product) => {
     dispatch(add(product));
   };
-  const handleRemove = (product) => {
-    dispatch(remove(product))
-  }
-
   return (
     <>
     <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, marginBottom: 28}}>

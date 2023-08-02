@@ -7,16 +7,18 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, remove, removeFromCart } from "../redux/cartSlice";
-// import { useNavigation } from "@react-navigation/native";
+import CheckBox from "react-native-check-box";
+import { useNavigation } from "@react-navigation/native";
 
 const Cart = () => {
   const cardItem = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-//   const navigation = useNavigation();
+  const navigation = useNavigation();
   const cartItems = useSelector(state => state.cart)
+  const [isChecked, setIsChecked] = useState(false)
 
   const handleRemove = (item) => {
     dispatch(removeFromCart(item));
@@ -44,11 +46,27 @@ const Cart = () => {
   const increaseQuantity = (item) => {
     dispatch(incrementQuantity(item))
   }
+  const handleCheck = (value, i)=>{
+    console.log("The value is", value, i)
+    if(handleCheck){
+      setIsChecked(!isChecked)
+    }
+  }
   return (
     <>
     <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, borderRadius: 2, borderWidth: 0.1}}>
     </View>
-    <View style={style.cartContainer}>
+   
+    {cartItems.length == 0 ? (
+        <View style={style.emptyCartContainer}>
+        <Text style={style.emptyCartText}>Your cart is empty.</Text>
+          <TouchableOpacity style={{backgroundColor: 'black', width: 170, padding: 10, borderRadius: 3, marginTop: 10}} onPress={()=>navigation.navigate('Home')}>
+            <Text style={{color: 'white', fontSize: 15, textAlign: 'center'}}>Continue Shopping</Text>
+          </TouchableOpacity>
+       
+      </View>
+    ): (
+      <View style={style.cartContainer}>
       <TouchableOpacity>
         <Text
           style={{
@@ -68,6 +86,7 @@ const Cart = () => {
       <ScrollView style={{flex: 1}}>
         {cardItem.map((item, i) => (
           <View style={style.itemContainer} key={`cardItem${i}`}>
+            <CheckBox isChecked={isChecked} style={{top: -50,}} onClick={()=>handleCheck(i)}/>
             <Image
               source={{ uri: item.image }}
               style={[
@@ -129,6 +148,8 @@ const Cart = () => {
       </View>): null}
       
     </View>
+    )}
+    
     </>
   );
 };
@@ -208,6 +229,15 @@ const style = StyleSheet.create({
   removeBtnText: {
     color: "white",
     textAlign: "center",
+  },
+  emptyCartContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyCartText: {
+    fontSize: 18,
+    color: "gray",
   },
 });
 
