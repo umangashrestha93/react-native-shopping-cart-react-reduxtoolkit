@@ -20,9 +20,9 @@ const Cart = () => {
   const cartItems = useSelector(state => state.cart)
   const [isChecked, setIsChecked] = useState(false)
 
-  console.log({cartItems})
-  console.log({cardItem})
-  console.log('hello')
+  // console.log({cartItems})
+  // console.log({cardItem})
+  // console.log('hello')
 
   const handleRemove = (item) => {
     console.log({item})
@@ -35,7 +35,7 @@ const Cart = () => {
     cartItems.map((item)=>{
         total = total + item.price * item.quantity
     })
-    return total
+    return total.toFixed(0)
   }
   const windowWidth = Dimensions.get("window").width;
   const imageWidth = windowWidth * 0.3;
@@ -51,16 +51,17 @@ const Cart = () => {
   const increaseQuantity = (item) => {
     dispatch(incrementQuantity(item))
   }
-  const handleCheck = (value, i)=>{
-    console.log("The value is", value, i)
-    if(handleCheck){
-      setIsChecked(!isChecked)
-    }
-  }
+  // const handleCheck = (value, i)=>{
+  //   console.log("The value is", value, i)
+  //   if(handleCheck){
+  //     setIsChecked(!isChecked)
+  //   }
+  // }
   return (
     <>
-    <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, borderRadius: 2, borderWidth: 0.1}}>
-    </View>
+    {/* <View style={{justifyContent: 'center', alignItems: 'center',backgroundColor: 'white', width: '100%', height: '8%', top: 35, borderRadius: 2, borderWidth: 0.1}}>
+      <Text style={{fontSize: 15, fontWeight: '500'}}>MyCart</Text>
+    </View> */}
    
     {cartItems.length == 0 ? (
         <View style={style.emptyCartContainer}>
@@ -72,13 +73,14 @@ const Cart = () => {
       </View>
     ): (
       <View style={style.cartContainer}>
+     
       <TouchableOpacity>
       
       </TouchableOpacity>
       <ScrollView style={{flex: 1}}>
         {cardItem.map((item, i) => (
           <View style={style.itemContainer} key={`cardItem${i}`}>
-            <CheckBox isChecked={isChecked} style={{top: -50,}} onClick={()=>handleCheck(i)}/>
+            {/* <CheckBox isChecked={isChecked} style={{top: -50,}} onClick={()=>handleCheck(i)}/> */}
             <Image
               source={{ uri: item.image }}
               style={[
@@ -88,7 +90,7 @@ const Cart = () => {
             />
             <View style={style.cartDetailsContainer}>
               <Text style={style.cartTitle}>{item.title}</Text>
-              <Text style={style.cartPrice}>{item.price}</Text>
+              <Text style={style.cartPrice}>${item.price}</Text>
             </View>
             {/* <TouchableOpacity style={style.cartRemoveBtn}>
                                 <Text onPress={()=>handleRemove(item.id)}>Remove</Text>
@@ -130,11 +132,11 @@ const Cart = () => {
       >
         <View style={{width: '50%', justifyContent: 'center', alignItems: "center", height: '100%'}}>
         <Text style={{fontSize: 16, fontWeight: 'bold'}}>{'added items'+'('+cartItems.length+')'}</Text>
-        <Text style={{fontSize: 16}}>{'Total:'+getTotal()}</Text>
+        <Text style={{fontSize: 16}}>{'Total:$'+getTotal()}</Text>
         </View>
         <View style={{width: '50%', justifyContent: 'center', alignItems: "center", height: '100%'}}>
-        <TouchableOpacity style={{backgroundColor: 'green',  borderRadius: 3, width: '70%', height: 30, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center'}}>checkout</Text>
+        <TouchableOpacity style={{backgroundColor: '#176B87',  borderRadius: 3, width: '70%', height: 30, alignItems: 'center', justifyContent: 'center'}}>
+            <Text style={{textAlign: 'center', color: 'white'}}>checkout</Text>
         </TouchableOpacity>
         </View>
       </View>): null}
@@ -160,6 +162,7 @@ const style = StyleSheet.create({
     padding: 5,
     alignItems: "center",
     backgroundColor: "white",
+    
   },
   imageContainer: {
     borderRadius: 3,
@@ -174,7 +177,7 @@ const style = StyleSheet.create({
     marginBottom: 5,
   },
   cartPrice: {
-    color: "green",
+    color: "#176B87",
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -188,7 +191,7 @@ const style = StyleSheet.create({
     padding: 3,
   },
   minusBtn: {
-    backgroundColor: "green",
+    backgroundColor: "#176B87",
     width: 20,
     alignItems: "center",
     borderRadius: 3,
@@ -199,7 +202,7 @@ const style = StyleSheet.create({
     color: "white",
   },
   plusBtn: {
-    backgroundColor: "green",
+    backgroundColor: "#176B87",
     width: 20,
     alignItems: "center",
     borderRadius: 3,
@@ -212,14 +215,14 @@ const style = StyleSheet.create({
   Remove: {
     position: "absolute",
     top: 95,
-    width: 90,
-    marginLeft: 190,
-    backgroundColor: "red",
+    // width: 70,
+    marginLeft: 295,
+    // backgroundColor: "red",
     borderRadius: 3,
     padding: 5,
   },
   removeBtnText: {
-    color: "white",
+    color: "red",
     textAlign: "center",
   },
   emptyCartContainer: {

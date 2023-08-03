@@ -12,7 +12,7 @@ import SignupScreen from './screens/SignupScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Account from './screens/Account'
 
-
+const Stack = createStackNavigator()
 const CartIcon = () => {
   const navigation = useNavigation()
   const items = useSelector(state => state.cart)
@@ -37,10 +37,9 @@ const CartIcon = () => {
   const items = useSelector(state => state.cart)
   console.log({items})
   return(
-    <Tab.Navigator screenOptions={{headerShown: false,
-      
-     }}>
-      <Tab.Screen name='Home' component={Home} options={{
+    <Tab.Navigator >
+      <Tab.Screen name='Products' component={Home} options={{
+        // headerShown: false,
         tabBarIcon: ()=>(
           <Ionicons name='home-outline' size={30}/>
         )
@@ -54,7 +53,7 @@ const CartIcon = () => {
           </View>
         )
       }}/>
-      <Tab.Screen name='Account' component={Account} options={{
+      <Tab.Screen name='Account' component={StackNavigator} options={{
         tabBarIcon: ()=>(
           <Ionicons name='person-outline' size={30}/>
         )
@@ -63,21 +62,16 @@ const CartIcon = () => {
   )
  }
  function StackNavigator(){
-  const Stack = createStackNavigator()
+  
   return(
-    <Stack.Navigator>
-       <Stack.Navigator
-          screenOptions={{
-            headerRight: () => <CartIcon />,
-          }}
-        >
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+          {/* <Stack.Screen name='Account' component={Account}/> */}
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name='Register' component={SignupScreen} />
           {/* <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Cart' component={Cart}/> */}
+          {/* <Stack.Screen name='StackNavigator' component={TabNavigator}/> */}
           
-        
-        </Stack.Navigator>
     </Stack.Navigator>
   )
  }
@@ -88,6 +82,7 @@ const App = () => {
       <NavigationContainer>
           <TabNavigator />
           {/* <StackNavigator /> */}
+          
       </NavigationContainer>
     </Provider>
   )

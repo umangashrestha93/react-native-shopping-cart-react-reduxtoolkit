@@ -20,12 +20,12 @@ const SignupScreen = () => {
         <TextInput placeholder='Enter your password'/>
       </View>
       <TouchableOpacity style={registerUI.registerBtn}>
-            <Text style={registerUI.registerTextBtn}>Register Now</Text>
+            <Text style={registerUI.registerTextBtn} onPress={()=>navigation.navigate('Register')}>Register Now</Text>
       </TouchableOpacity>
       <View style={{marginTop: 55}}>
-            <Text>Already have an account?</Text>
+            <Text style={{color: 'white'}}>Already have an account?</Text>
             <TouchableOpacity style={{marginLeft: 170, top: -17}} onPress={()=>navigation.navigate('Login')}>
-                <Text style={{color: 'blue'}}>Login</Text>
+                <Text style={{color: '#64CCC5'}}>Login</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -36,7 +36,7 @@ const registerUI =  StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#9BABB8'
+        backgroundColor: '#001C30'
     },
     registerImage:{
         width: '100%',
@@ -77,12 +77,14 @@ const registerUI =  StyleSheet.create({
         borderRadius: 3,
     },
     registerBtn:{
-        backgroundColor: 'black',
-        width: 100,
+        backgroundColor: '#64CCC5',
+        width: 105,
         padding: 7,
         borderRadius: 4,
-        shadowOpacity: 1,
-        shadowColor: 'white',
+        shadowOpacity: 0.2,
+        shadowColor: '#64CCC5',
+        borderWidth: 1,
+        borderColor: 'gray',
         top: 48
 
     }, 
@@ -90,8 +92,6 @@ const registerUI =  StyleSheet.create({
         color: 'white',
         textAlign: 'center'
     }
-
-
 })
 
 export default SignupScreen

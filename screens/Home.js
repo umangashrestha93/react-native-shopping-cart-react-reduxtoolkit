@@ -53,7 +53,10 @@ const Home = () => {
   return (
     <>
     <StatusBar style={{backgroundColor: 'gray'}}/>
-    <View style={{backgroundColor: 'white', width: '100%', height: '8%', top: 35, marginBottom: 28}}>
+   
+      <ScrollView>
+        <View style={styles.homeContainer}>
+        <View style={{ width: '100%', height: 20, marginBottom: 28}}>
          <View
             style={{
               backgroundColor: "white",
@@ -62,9 +65,9 @@ const Home = () => {
               width: "80%",
               height: 40,
               borderRadius: 5,
-              marginBottom: 7,
+              // marginBottom: 2,
               borderWidth: 0.3,
-              top: 10,
+              // top: 20,
               marginLeft: 40
              
             }}
@@ -88,9 +91,6 @@ const Home = () => {
             />
           </View>
     </View>
-      <ScrollView>
-        <View style={styles.homeContainer}>
-
           {products.map((product) => (
             <View style={styles.productContainer} key={product.id}>
               <Image
@@ -98,7 +98,7 @@ const Home = () => {
                 style={styles.productImage}
               />
               <Text styles={styles.productTitle}>{product.title}</Text>
-              <Text styles={styles.productPrice}>{product.price}</Text>
+              <Text styles={styles.productPrice}>${product.price}</Text>
               {/* {cardItems.some((value)=>value.id == product.id)? (
                   <TouchableOpacity style={styles.addToCartButton}>
                   <Text
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
     padding: 12,
+    // top: -20
   },
   productContainer: {
     width: "49%",
@@ -161,19 +162,20 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 4,
+    marginBottom: 7,
   },
   productPrice: {
     fontSize: 14,
-    color: "black",
-    marginBottom: 8,
+    color: "#176B87",
+    marginBottom: 5,
   },
   addToCartButton: {
-    backgroundColor: "black",
+    backgroundColor: "#176B87",
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
     alignItems: "center",
+    marginTop: 5
   },
 });
 

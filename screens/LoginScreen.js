@@ -19,9 +19,9 @@ const LoginScreen = () => {
             <Text style={LoginUI.loginText}>Login</Text>
         </TouchableOpacity>
         <View style={{marginTop: 8}}>
-            <Text>Don't have an account?</Text>
+            <Text style={{color: 'white'}}>Don't have an account?</Text>
             <TouchableOpacity style={{marginLeft: 155, top: -17}} onPress={()=>navigation.navigate('Register')}>
-                <Text style={{color: 'red'}}>Register Now</Text>
+                <Text style={{color: '#64CCC5'}}>Register Now</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -33,7 +33,8 @@ const LoginUI = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#9BABB8'
+        backgroundColor: '#001C30'
+
     },
     logoContainer:{
         width: '100%',
@@ -62,12 +63,14 @@ const LoginUI = StyleSheet.create({
 
     },
     loginBtn:{
-        backgroundColor: 'black',
+        backgroundColor: '#64CCC5',
         width: 100,
         padding: 7,
         borderRadius: 4,
-        shadowOpacity: 1,
-        shadowColor: 'white'
+        shadowOpacity: 0.2,
+        shadowColor: '#64CCC5',
+        borderColor: 'gray',
+        borderWidth: 1
 
     },
     loginText:{
