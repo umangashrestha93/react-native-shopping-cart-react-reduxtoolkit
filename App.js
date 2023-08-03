@@ -11,6 +11,7 @@ import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Account from './screens/Account'
+import Checkout from './screens/Checkout'
 
 const Stack = createStackNavigator()
 const CartIcon = () => {
@@ -37,7 +38,7 @@ const CartIcon = () => {
   const items = useSelector(state => state.cart)
   console.log({items})
   return(
-    <Tab.Navigator >
+    <Tab.Navigator>
       <Tab.Screen name='Products' component={Home} options={{
         // headerShown: false,
         tabBarIcon: ()=>(
@@ -64,10 +65,13 @@ const CartIcon = () => {
  function StackNavigator(){
   
   return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{headerShown: false}} >
           {/* <Stack.Screen name='Account' component={Account}/> */}
+          
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name='Register' component={SignupScreen} />
+          <Stack.Screen name='checkout' component={Checkout} />
+         
           {/* <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Cart' component={Cart}/> */}
           {/* <Stack.Screen name='StackNavigator' component={TabNavigator}/> */}

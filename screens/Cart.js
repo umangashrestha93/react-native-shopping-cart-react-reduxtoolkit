@@ -136,7 +136,7 @@ const Cart = () => {
         </View>
         <View style={{width: '50%', justifyContent: 'center', alignItems: "center", height: '100%'}}>
         <TouchableOpacity style={{backgroundColor: '#176B87',  borderRadius: 3, width: '70%', height: 30, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center', color: 'white'}}>checkout</Text>
+            <Text style={{textAlign: 'center', color: 'white'}} onPress={()=>navigation.navigate('checkout')}>checkout</Text>
         </TouchableOpacity>
         </View>
       </View>): null}
@@ -151,7 +151,7 @@ const Cart = () => {
 const style = StyleSheet.create({
   cartContainer: {
     flex: 1,
-    padding: 12,
+    padding: 5,
   },
   itemContainer: {
     flexDirection: "row",
