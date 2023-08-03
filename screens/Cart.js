@@ -155,11 +155,12 @@ const style = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: "row",
+    // justifyContent: 'center',
     marginBottom: 5,
     borderWidth: 0.2,
     borderColor: "gray",
     borderRadius: 3,
-    padding: 5,
+    padding: 7,
     alignItems: "center",
     backgroundColor: "white",
     
@@ -212,15 +213,17 @@ const style = StyleSheet.create({
   plusBtnText: {
     color: "white",
   },
+
   Remove: {
     position: "absolute",
     top: 95,
     // width: 70,
-    marginLeft: 295,
+    marginLeft: 305,
     // backgroundColor: "red",
     borderRadius: 3,
     padding: 5,
   },
+  
   removeBtnText: {
     color: "red",
     textAlign: "center",

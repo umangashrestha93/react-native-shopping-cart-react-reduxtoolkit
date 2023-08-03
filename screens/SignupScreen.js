@@ -19,8 +19,8 @@ const SignupScreen = () => {
       <View style={registerUI.registerPassContainer}>
         <TextInput placeholder='Enter your password'/>
       </View>
-      <TouchableOpacity style={registerUI.registerBtn}>
-            <Text style={registerUI.registerTextBtn} onPress={()=>navigation.navigate('Register')}>Register Now</Text>
+      <TouchableOpacity style={registerUI.registerBtn} onPress={() => navigation.replace('Home')}>
+            <Text style={registerUI.registerTextBtn} >Register Now</Text>
       </TouchableOpacity>
       <View style={{marginTop: 55}}>
             <Text style={{color: 'white'}}>Already have an account?</Text>
@@ -31,6 +31,7 @@ const SignupScreen = () => {
     </View>
   )
 }
+
 const registerUI =  StyleSheet.create({
     registerContainer:{
         flex: 1,

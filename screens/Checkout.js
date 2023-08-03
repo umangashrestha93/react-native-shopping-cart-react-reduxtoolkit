@@ -25,17 +25,21 @@ const Checkout = () => {
                     <View style={checkOut.tiltleAndPrice}>
                       <Text style={checkOut.checkTitle}>{items.title}</Text>
                       <Text style={checkOut.checkPrice}>${items.price}</Text>
+                      <Text style={{top: 3, fontSize: 14}}>x{items.quantity}</Text>
                       </View>
                 </View>
               
               
             ))}
-            <View style={checkOut.totalContainer}>
-                <Text style={checkOut.totalText}>Total: ${getTotalAmount()}</Text>
-                <TouchableOpacity style={checkOut.placeAnOrder}>
-                    <Text style={checkOut.textColor}>Place Order</Text>
-                </TouchableOpacity>
-            </View>
+            {checkOutItems.length > 0 ? (
+                    <View style={checkOut.totalContainer}>
+                    <Text style={checkOut.totalText}>Total: ${getTotalAmount()}</Text>
+                    <TouchableOpacity style={checkOut.placeAnOrder}>
+                        <Text style={checkOut.textColor}>Place Order</Text>
+                    </TouchableOpacity>
+                </View>
+            ): null}
+        
             
     </View>
   )

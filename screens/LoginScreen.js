@@ -15,7 +15,7 @@ const LoginScreen = () => {
         <View style={LoginUI.loginPassword}>
             <TextInput placeholder='Enter your password'/>
         </View>
-        <TouchableOpacity style={LoginUI.loginBtn}>
+        <TouchableOpacity style={LoginUI.loginBtn} onPress={() => navigation.replace('Home')}>
             <Text style={LoginUI.loginText}>Login</Text>
         </TouchableOpacity>
         <View style={{marginTop: 8}}>

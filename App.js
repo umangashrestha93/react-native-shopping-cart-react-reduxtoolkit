@@ -39,7 +39,7 @@ const CartIcon = () => {
   console.log({items})
   return(
     <Tab.Navigator>
-      <Tab.Screen name='Products' component={Home} options={{
+      <Tab.Screen name='Home' component={Home} options={{
         // headerShown: false,
         tabBarIcon: ()=>(
           <Ionicons name='home-outline' size={30}/>
@@ -54,11 +54,11 @@ const CartIcon = () => {
           </View>
         )
       }}/>
-      <Tab.Screen name='Account' component={StackNavigator} options={{
+      {/* <Tab.Screen name='Account' component={StackNavigator} options={{
         tabBarIcon: ()=>(
           <Ionicons name='person-outline' size={30}/>
         )
-      }} />
+      }} /> */}
     </Tab.Navigator>
   )
  }
@@ -67,10 +67,10 @@ const CartIcon = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}} >
           {/* <Stack.Screen name='Account' component={Account}/> */}
-          
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name='Register' component={SignupScreen} />
-          <Stack.Screen name='checkout' component={Checkout} />
+          <Stack.Screen name='Home' component={TabNavigator}/>
+          <Stack.Screen name='checkout' component={Checkout}/>
          
           {/* <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Cart' component={Cart}/> */}
@@ -80,12 +80,12 @@ const CartIcon = () => {
   )
  }
 
-const App = () => {
+const App = (props) => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-          <TabNavigator />
-          {/* <StackNavigator /> */}
+          {/* <TabNavigator /> */}
+          <StackNavigator />
           
       </NavigationContainer>
     </Provider>

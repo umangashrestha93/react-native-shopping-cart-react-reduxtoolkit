@@ -12,10 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/cartSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import filter from "lodash.filter";
+import { Toast } from "react-native-toast-message";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
+  // const [filterProducts, setFilterProducts] = useState([])
   // const cardItems = useSelector((state)=> state.cart)
   const dispatch = useDispatch();
 
@@ -26,7 +29,13 @@ const Home = () => {
       // console.log(result)
       const data = await result.json();
       // console.log(data)
+  
       setProducts(data);
+      Toast.show({
+        type: 'success',
+        text1: 'Added to cart',
+        text2: 'successfully added items'
+      })
     } catch (error) {
       console.log("Got this error.");
       console.log(error);
@@ -86,8 +95,6 @@ const Home = () => {
                 width: "100%",
               }}
               autoCapitalize="none"
-              onChangeText={(text) => handleSearch(text)}
-              value={search}
             />
           </View>
     </View>
@@ -125,6 +132,7 @@ const Home = () => {
                 >
                   Add to cart
                 </Text>
+          
               </TouchableOpacity>
               
             </View>
@@ -144,6 +152,7 @@ const styles = StyleSheet.create({
     padding: 12,
     // top: -20
   },
+
   productContainer: {
     width: "49%",
     marginBottom: 16,
