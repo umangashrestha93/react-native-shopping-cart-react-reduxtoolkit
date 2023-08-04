@@ -27,6 +27,7 @@ const cartSlice = createSlice({
             }else{
                 itemInCart.quantity--;
             }
+            
         },
         removeFromCart:(state, action)=>{
             console.log("This is removing item", action.payload)

@@ -10,6 +10,7 @@ import Cart from './screens/Cart'
 import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import FlashMessage from "react-native-flash-message";
 import Account from './screens/Account'
 import Checkout from './screens/Checkout'
 
@@ -46,30 +47,27 @@ const CartIcon = () => {
         )
       }}/>
       <Tab.Screen name='Cart' component={Cart} options={{
+        // headerShown: false,
         tabBarIcon: ()=>(
           <View>
             <Ionicons name='cart-outline' size={30}/>
             {items.length ? (<Text style={{position: 'absolute', marginLeft: 28}}>{items.length}</Text>): null}
-            
           </View>
         )
       }}/>
-      {/* <Tab.Screen name='Account' component={StackNavigator} options={{
-        tabBarIcon: ()=>(
-          <Ionicons name='person-outline' size={30}/>
-        )
-      }} /> */}
+
+
     </Tab.Navigator>
   )
  }
  function StackNavigator(){
   
   return(
-    <Stack.Navigator screenOptions={{headerShown: false}} >
+    <Stack.Navigator >
           {/* <Stack.Screen name='Account' component={Account}/> */}
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name='Register' component={SignupScreen} />
-          <Stack.Screen name='Home' component={TabNavigator}/>
+          <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
           <Stack.Screen name='checkout' component={Checkout}/>
          
           {/* <Stack.Screen name='Home' component={Home} />
@@ -85,7 +83,11 @@ const App = (props) => {
     <Provider store={store}>
       <NavigationContainer>
           {/* <TabNavigator /> */}
-          <StackNavigator />
+          <View style={{flex: 1}}>
+            <StackNavigator />
+            <FlashMessage position="top" />
+            </View>
+          
           
       </NavigationContainer>
     </Provider>

@@ -92,9 +92,6 @@ const Cart = () => {
               <Text style={style.cartTitle}>{item.title}</Text>
               <Text style={style.cartPrice}>${item.price}</Text>
             </View>
-            {/* <TouchableOpacity style={style.cartRemoveBtn}>
-                                <Text onPress={()=>handleRemove(item.id)}>Remove</Text>
-                            </TouchableOpacity> */}
 
                <TouchableOpacity style={style.minusBtn} onPress={()=> decreaseQuantity(item)}>
               <Text style={style.minusBtnText}>-</Text>
@@ -104,7 +101,7 @@ const Cart = () => {
            <TouchableOpacity style={style.plusBtn} onPress={()=> increaseQuantity(item)}>
               <Text style={style.plusBtnText}>+</Text>
             </TouchableOpacity>
-           
+        
             <TouchableOpacity style={style. Remove} onPress={()=> handleRemove(item.id)}>
               <Text style={style.removeBtnText}>Remove</Text>
             </TouchableOpacity>
@@ -223,7 +220,7 @@ const style = StyleSheet.create({
     borderRadius: 3,
     padding: 5,
   },
-  
+
   removeBtnText: {
     color: "red",
     textAlign: "center",

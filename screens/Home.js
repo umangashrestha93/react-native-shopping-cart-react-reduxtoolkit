@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/cartSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { showMessage } from "react-native-flash-message";
 import filter from "lodash.filter";
 import { Toast } from "react-native-toast-message";
 
@@ -31,11 +32,7 @@ const Home = () => {
       // console.log(data)
   
       setProducts(data);
-      Toast.show({
-        type: 'success',
-        text1: 'Added to cart',
-        text2: 'successfully added items'
-      })
+  
     } catch (error) {
       console.log("Got this error.");
       console.log(error);
@@ -58,6 +55,11 @@ const Home = () => {
 
   const handleAdd = (product) => {
     dispatch(add(product));
+    showMessage({
+      message: "successfully added",
+      description: "you have successfully added to cart",
+      type: "success",
+    });
   };
   return (
     <>
