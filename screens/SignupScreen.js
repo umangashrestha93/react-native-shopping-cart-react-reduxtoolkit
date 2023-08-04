@@ -19,7 +19,7 @@ const SignupScreen = () => {
       <View style={registerUI.registerPassContainer}>
         <TextInput placeholder='Enter your password'/>
       </View>
-      <TouchableOpacity style={registerUI.registerBtn} onPress={() => navigation.replace('Home')}>
+      <TouchableOpacity style={registerUI.registerBtn} onPress={() => navigation.replace('Tab')}>
             <Text style={registerUI.registerTextBtn} >Register Now</Text>
       </TouchableOpacity>
       <View style={{marginTop: 55}}>

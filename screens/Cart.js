@@ -43,7 +43,7 @@ const Cart = () => {
 
   const decreaseQuantity = (item)=>{
     if(item.quantity == 1){
-      dispatch(removeFromCart(item))
+      dispatch(decrementQuantity(item))
     }else{
       dispatch(decrementQuantity(item))
     }
@@ -51,22 +51,12 @@ const Cart = () => {
   const increaseQuantity = (item) => {
     dispatch(incrementQuantity(item))
   }
-  // const handleCheck = (value, i)=>{
-  //   console.log("The value is", value, i)
-  //   if(handleCheck){
-  //     setIsChecked(!isChecked)
-  //   }
-  // }
   return (
     <>
-    {/* <View style={{justifyContent: 'center', alignItems: 'center',backgroundColor: 'white', width: '100%', height: '8%', top: 35, borderRadius: 2, borderWidth: 0.1}}>
-      <Text style={{fontSize: 15, fontWeight: '500'}}>MyCart</Text>
-    </View> */}
-   
     {cartItems.length == 0 ? (
         <View style={style.emptyCartContainer}>
         <Text style={style.emptyCartText}>Your cart is empty.</Text>
-          <TouchableOpacity style={{backgroundColor: 'black', width: 170, padding: 10, borderRadius: 3, marginTop: 10}} onPress={()=>navigation.navigate('Home')}>
+          <TouchableOpacity style={{backgroundColor: '#176B87', width: 170, padding: 10, borderRadius: 3, marginTop: 10}} onPress={()=>navigation.navigate('Home')}>
             <Text style={{color: 'white', fontSize: 15, textAlign: 'center'}}>Continue Shopping</Text>
           </TouchableOpacity>
        
@@ -80,7 +70,6 @@ const Cart = () => {
       <ScrollView style={{flex: 1}}>
         {cardItem.map((item, i) => (
           <View style={style.itemContainer} key={`cardItem${i}`}>
-            {/* <CheckBox isChecked={isChecked} style={{top: -50,}} onClick={()=>handleCheck(i)}/> */}
             <Image
               source={{ uri: item.image }}
               style={[

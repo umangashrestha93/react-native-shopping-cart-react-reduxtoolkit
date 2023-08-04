@@ -127,10 +127,9 @@ const Home = () => {
                 </Text>
               </TouchableOpacity>
               )} */}
-                <TouchableOpacity style={styles.addToCartButton}>
+                <TouchableOpacity style={styles.addToCartButton}  onPress={() => handleAdd(product)}>
                 <Text
                   style={{ color: "white" }}
-                  onPress={() => handleAdd(product)}
                 >
                   Add to cart
                 </Text>
