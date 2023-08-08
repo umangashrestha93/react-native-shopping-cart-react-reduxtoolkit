@@ -1,25 +1,50 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Button} from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { BASE_URL } from '../components/Config'
+import axios from 'axios'
 
 const SignupScreen = () => {
   const navigation = useNavigation()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+
+  const register = () =>{
+    axios.post(`${BASE_URL}/ecommerce/users/register`,{
+            name,
+            email,
+            password: pass
+    })
+    .then((res)=>{
+        console.log(res.data)
+        setName('')
+        setEmail('')
+        setPass('')
+        navigation.navigate('Login')
+    })
+    .catch(error=>{
+        console.log("register error", error)
+    })
+  }
+
+
   return (
     <View style={registerUI.registerContainer}>
         <View style={registerUI.registerImage}>
             <Image source = {require('../assets/images/RegisterLogo.png')}/>
         </View>
       <View style={registerUI.registerTextContainer}>
-        <TextInput placeholder='Enter your name'/>
+        <TextInput placeholder='Enter your name' value={name} onChangeText={(text)=>setName(text)}/>
       </View>
       <View style={registerUI.registerEmailContainer}>
-        <TextInput placeholder='Enter your email'/>
+        <TextInput placeholder='Enter your email' value={email} onChangeText={(text)=>setEmail(text)}/>
       </View>
       <View style={registerUI.registerPassContainer}>
-        <TextInput placeholder='Enter your password'/>
+        <TextInput placeholder='Enter your password' value={pass} onChangeText={(text)=>setPass(text)}/>
       </View>
-      <TouchableOpacity style={registerUI.registerBtn} onPress={() => navigation.replace('Tab')}>
+      <TouchableOpacity style={registerUI.registerBtn} onPress={register}>
             <Text style={registerUI.registerTextBtn} >Register Now</Text>
       </TouchableOpacity>
       <View style={{marginTop: 55}}>

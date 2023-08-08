@@ -1,21 +1,42 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { BASE_URL } from '../components/Config'
+import axios from 'axios'
 
 const LoginScreen = () => {
     const navigation = useNavigation()
+    const [email, setEmail]= useState('')
+    const [password, setPassword] = useState('')
+
+    const login = ()=>{
+        axios.post(`${BASE_URL}/ecommerce/users/login`,{
+            email,
+            password: password
+        })
+        .then(res=>{
+            console.log(res.data)
+            setEmail('')
+            setPassword('')
+            navigation.navigate('Tab')
+        })
+        .catch(error=>{
+            console.log("login error", error)
+        })
+    }
+
   return (
     <View style={LoginUI.loginContainer}>
         <View style={LoginUI.logoContainer}>
             <Image source={require('../assets/images/Logo2.png')}/>
         </View>
         <View style={LoginUI.loginEmail}>
-            <TextInput placeholder='Enter your email'/>
+            <TextInput placeholder='Enter your email' value={email} onChangeText={(text)=>setEmail(text)}/>
         </View>
         <View style={LoginUI.loginPassword}>
-            <TextInput placeholder='Enter your password'/>
+            <TextInput placeholder='Enter your password' value={password} onChangeText={(text)=>setPassword(text)}/>
         </View>
-        <TouchableOpacity style={LoginUI.loginBtn} onPress={() => navigation.replace('Tab')}>
+        <TouchableOpacity style={LoginUI.loginBtn} onPress={login}>
             <Text style={LoginUI.loginText}>Login</Text>
         </TouchableOpacity>
         <View style={{marginTop: 8}}>

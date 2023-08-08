@@ -13,6 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import FlashMessage from "react-native-flash-message";
 import Account from './screens/Account'
 import Checkout from './screens/Checkout'
+import Profile from './components/Profile'
 
 const Stack = createStackNavigator()
 const CartIcon = () => {
@@ -55,6 +56,13 @@ const CartIcon = () => {
           </View>
         )
       }}/>
+      <Tab.Screen name='profile' component={Profile} options={{
+        tabBarIcon: ()=>(
+          <View>
+            <Ionicons size={30} name='person-outline' />
+          </View>
+        )
+      }}/>
 
 
     </Tab.Navigator>
@@ -65,8 +73,8 @@ const CartIcon = () => {
   return(
     <Stack.Navigator >
           {/* <Stack.Screen name='Account' component={Account}/> */}
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name='Register' component={SignupScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+          <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
           <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
           <Stack.Screen name='checkout' component={Checkout}/>
          

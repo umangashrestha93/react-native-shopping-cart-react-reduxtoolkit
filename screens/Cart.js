@@ -121,8 +121,8 @@ const Cart = () => {
         <Text style={{fontSize: 16}}>{'Total:$'+getTotal()}</Text>
         </View>
         <View style={{width: '50%', justifyContent: 'center', alignItems: "center", height: '100%'}}>
-        <TouchableOpacity style={{backgroundColor: '#176B87',  borderRadius: 3, width: '70%', height: 30, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center', color: 'white'}} onPress={()=>navigation.navigate('checkout')}>checkout</Text>
+        <TouchableOpacity style={{backgroundColor: '#176B87',  borderRadius: 3, width: '70%', height: 30, alignItems: 'center', justifyContent: 'center'}} onPress={()=>navigation.navigate('checkout')}>
+            <Text style={{textAlign: 'center', color: 'white'}} >checkout</Text>
         </TouchableOpacity>
         </View>
       </View>): null}
