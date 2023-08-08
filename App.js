@@ -16,24 +16,24 @@ import Checkout from './screens/Checkout'
 import Profile from './components/Profile'
 
 const Stack = createStackNavigator()
-const CartIcon = () => {
-  const navigation = useNavigation()
-  const items = useSelector(state => state.cart)
+// const CartIcon = () => {
+//   const navigation = useNavigation()
+//   const items = useSelector(state => state.cart)
 
-  const handleAddToCart = () => {
-    navigation.navigate('Cart')
-  }
+//   const handleAddToCart = () => {
+//     navigation.navigate('Cart')
+//   }
 
-  return (
-    <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15, backgroundColor: 'black', borderRadius: 50, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-      {items.length ? (
-      <View style={{position: 'absolute', top: -10, left: 20, backgroundColor: 'black', width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderRadius: 20}}>
-          <Text style={app.cartLength}>{items.length}</Text>
-        </View>) : null}
-      {/* <Text>items:{items.length} </Text> */}
-    </TouchableOpacity>
-  )
-}
+//   return (
+//     <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15, backgroundColor: 'black', borderRadius: 50, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+//       {items.length ? (
+//       <View style={{position: 'absolute', top: -10, left: 20, backgroundColor: 'black', width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderRadius: 20}}>
+//           <Text style={app.cartLength}>{items.length}</Text>
+//         </View>) : null}
+//       {/* <Text>items:{items.length} </Text> */}
+//     </TouchableOpacity>
+//   )
+// }
 
  function TabNavigator(){
   const Tab = createBottomTabNavigator()
@@ -72,7 +72,6 @@ const CartIcon = () => {
   
   return(
     <Stack.Navigator >
-          {/* <Stack.Screen name='Account' component={Account}/> */}
           <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
           <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
           <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>

@@ -108,7 +108,7 @@ const Cart = () => {
                 >
                   <Text style={style.plusBtnText}>+</Text>
                 </TouchableOpacity>
-                <Modal transparent={true} visible={showModal}>
+                <Modal transparent={true} visible={showModal} animationType="slide">
                   <View style={style.modalContainer}>
                     <View style={style.modalView}>
                       <Text style={style.modalText}>
