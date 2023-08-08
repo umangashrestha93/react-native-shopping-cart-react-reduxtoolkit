@@ -1,27 +1,37 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../components/Config'
+import { showMessage } from "react-native-flash-message";
 import axios from 'axios'
 
 const LoginScreen = () => {
     const navigation = useNavigation()
     const [email, setEmail]= useState('')
     const [password, setPassword] = useState('')
+    const [isloading, setIsLoading] = useState(false)
 
     const login = ()=>{
+        setIsLoading(true)
         axios.post(`${BASE_URL}/ecommerce/users/login`,{
             email,
             password: password
         })
         .then(res=>{
             console.log(res.data)
+            setIsLoading(false)
             setEmail('')
             setPassword('')
             navigation.navigate('Tab')
+            showMessage({
+                message: "Login Successful",
+                description: "welcome to shopping site",
+                type: "success",
+              });
         })
         .catch(error=>{
             console.log("login error", error)
+            setIsLoading(false)
         })
     }
 
@@ -37,7 +47,10 @@ const LoginScreen = () => {
             <TextInput placeholder='Enter your password' value={password} onChangeText={(text)=>setPassword(text)}/>
         </View>
         <TouchableOpacity style={LoginUI.loginBtn} onPress={login}>
-            <Text style={LoginUI.loginText}>Login</Text>
+            {isloading?(<ActivityIndicator />): (
+                <Text style={LoginUI.loginText}>Login</Text>
+            )}
+            
         </TouchableOpacity>
         <View style={{marginTop: 8}}>
             <Text style={{color: 'white'}}>Don't have an account?</Text>
