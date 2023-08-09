@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "windows": "react-native run-windows"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -30,10 +31,12 @@
     "react-native-toast-message": "^2.1.6",
     "react-native-video": "^5.2.1",
     "react-redux": "^8.1.1",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "react-native-windows": "0.72.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "metro-config": "^0.76.7"
   },
   "private": true
 }
