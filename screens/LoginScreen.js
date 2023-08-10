@@ -4,12 +4,16 @@ import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../components/Config'
 import { showMessage } from "react-native-flash-message";
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
     const navigation = useNavigation()
     const [email, setEmail]= useState('')
     const [password, setPassword] = useState('')
     const [isloading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
 
     const login = ()=>{
         setIsLoading(true)
@@ -19,6 +23,8 @@ const LoginScreen = () => {
         })
         .then(res=>{
             console.log(res.data)
+            dispatch(setToken(res.data.accessToken))
+            AsyncStorage.setItem("data", res.data)
             setIsLoading(false)
             setEmail('')
             setPassword('')

@@ -37,6 +37,7 @@ const Stack = createStackNavigator()
 
  function TabNavigator(){
   const Tab = createBottomTabNavigator()
+  
   const items = useSelector(state => state.cart)
   console.log({items})
   return(
@@ -69,13 +70,23 @@ const Stack = createStackNavigator()
   )
  }
  function StackNavigator(){
-  
+  const {accessToken} = useSelector((state)=> state.user)
   return(
     <Stack.Navigator >
-          <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
-          <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
-          <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
+      {accessToken ? (
+        <>
+        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+        <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
+        </>
+
+      ): (
+        <>
+        <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
           <Stack.Screen name='checkout' component={Checkout}/>
+          </>
+      )}
+          
+          
          
           {/* <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Cart' component={Cart}/> */}

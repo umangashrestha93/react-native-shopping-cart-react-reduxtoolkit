@@ -4,12 +4,16 @@ import { TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { BASE_URL } from '../components/Config'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../redux/userSlice'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const SignupScreen = () => {
   const navigation = useNavigation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const dispatch = useDispatch()
 
   const register = () =>{
     axios.post(`${BASE_URL}/ecommerce/users/register`,{
@@ -19,6 +23,8 @@ const SignupScreen = () => {
     })
     .then((res)=>{
         console.log(res.data)
+        dispatch(setToken(res.data.accessToken))
+        AsyncStorage.setItem("accessToken", data.accessToken)
         setName('')
         setEmail('')
         setPass('')
