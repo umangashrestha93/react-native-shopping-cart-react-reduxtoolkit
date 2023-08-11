@@ -58,6 +58,7 @@ const Stack = createStackNavigator()
         )
       }}/>
       <Tab.Screen name='profile' component={Profile} options={{
+        headerShown: false,
         tabBarIcon: ()=>(
           <View>
             <Ionicons size={30} name='person-outline' />
