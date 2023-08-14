@@ -16,27 +16,9 @@ import Profile from './components/Profile'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { removeToken, setToken } from './redux/userSlice'
 import { StatusBar } from 'react-native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 const Stack = createStackNavigator()
-// const CartIcon = () => {
-//   const navigation = useNavigation()
-//   const items = useSelector(state => state.cart)
-
-//   const handleAddToCart = () => {
-//     navigation.navigate('Cart')
-//   }
-
-//   return (
-//     <TouchableOpacity onPress={handleAddToCart} style={{ marginRight: 15, backgroundColor: 'black', borderRadius: 50, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-//       {items.length ? (
-//       <View style={{position: 'absolute', top: -10, left: 20, backgroundColor: 'black', width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderRadius: 20}}>
-//           <Text style={app.cartLength}>{items.length}</Text>
-//         </View>) : null}
-//       {/* <Text>items:{items.length} </Text> */}
-//     </TouchableOpacity>
-//   )
-// }
-
 
 
  function TabNavigator(){
@@ -96,12 +78,12 @@ const Stack = createStackNavigator()
 
 
   return(
-    <Stack.Navigator >
-         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+    <Stack.Navigator>
+         {/* <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
         <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
-          <Stack.Screen name='checkout' component={Checkout}/>
-      {/* {token ? (
+          <Stack.Screen name='checkout' component={Checkout}/> */}
+      {token ? (
         <>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
         <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
@@ -110,13 +92,24 @@ const Stack = createStackNavigator()
       ): (
         <>
         <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
           <Stack.Screen name='checkout' component={Checkout}/>
           </>
-      )} */}
+      )}
           
     </Stack.Navigator>
   )
  }
+
+//  function DrawerNavigator(){
+//   const Drawer = createDrawerNavigator()
+//   return(
+//     <Drawer.Navigator>
+//        <Drawer.Screen name='Tab' component={TabNavigator} />
+//       <Drawer.Screen name='Cart' component={Cart} />
+//     </Drawer.Navigator>
+//   )
+//  }
 
 const App = (props) => {
   return (
@@ -125,6 +118,7 @@ const App = (props) => {
           {/* <TabNavigator /> */}
           <View style={{flex: 1}}>
             <StackNavigator />
+            {/* <DrawerNavigator /> */}
             <FlashMessage position="top" />
             </View>
           
@@ -133,16 +127,5 @@ const App = (props) => {
     </Provider>
   )
 }
-
-const app = StyleSheet.create({
-  cartLength:{
-      fontSize: 15,
-      color: 'white',
-      
-
-
-
-  }
-})
 
 export default App

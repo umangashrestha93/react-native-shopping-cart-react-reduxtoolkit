@@ -31,7 +31,7 @@ const Cart = () => {
   // console.log('hello')
 
   const handleRemove = (item) => {
-    console.log({ item });
+    // console.log({ item });
     dispatch(removeFromCart(item));
   };
 
@@ -78,7 +78,7 @@ const Cart = () => {
         </View>
       ) : (
         <View style={style.cartContainer}>
-          <TouchableOpacity></TouchableOpacity>
+          {/* <TouchableOpacity></TouchableOpacity> */}
           <ScrollView style={{ flex: 1 }}>
             {cardItem.map((item, i) => (
               <View style={style.itemContainer} key={`cardItem${i}`}>

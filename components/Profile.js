@@ -51,14 +51,14 @@ const Profile = () => {
   },[])
 
   const handleLogout = async () => {
-    // try {
-    //   let removeAccessToken = await AsyncStorage.removeItem("accessToken");
-    //   dispatch(removeToken(removeAccessToken));
-    //   console.log("Logout:", "Logout successfully");
-    //   navigation.navigate("Login");
-    // } catch (error) {
-    //   console.log("Logout error", error);
-    // }
+    try {
+      let removeAccessToken = await AsyncStorage.removeItem("accessToken");
+      dispatch(removeToken(removeAccessToken));
+      console.log("Logout:", "Logout successfully");
+      navigation.replace("Login");
+    } catch (error) {
+      console.log("Logout error", error);
+    }
 
   };
 

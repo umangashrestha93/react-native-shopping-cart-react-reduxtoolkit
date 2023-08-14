@@ -29,7 +29,7 @@ const LoginScreen = () => {
             setIsLoading(false)
             setEmail('')
             setPassword('')
-            navigation.navigate('Tab')
+            navigation.replace('Tab')
             showMessage({
                 message: "Login Successful",
                 description: "welcome to shopping site",
