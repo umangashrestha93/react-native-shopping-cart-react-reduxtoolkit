@@ -9,7 +9,7 @@ const userSlice = createSlice({
         setToken:(state, action)=>{
             state.accessToken = action.payload;
         },
-        removeToken:(state)=>{
+        removeToken:(state, action)=>{
             state.accessToken = null
         }
     }

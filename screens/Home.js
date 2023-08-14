@@ -51,16 +51,6 @@ const Home = () => {
 
   },[search, products])
 
-  // const handleSearch = async (text) => {
-  //   setSearch(text);
-  //   const url = `https://fakestoreapi.com/products?q=${text}`;
-  //   let result = await fetch(url);
-  //   result = await result.json();
-  //   if (result) {
-  //     setProducts(result);
-  //   }
-  // };
-
   useEffect(() => {
     getProduct();
   }, []);

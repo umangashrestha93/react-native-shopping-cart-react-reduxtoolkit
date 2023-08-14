@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,24 +10,55 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { removeToken } from "../redux/userSlice";
+import { removeToken, setToken } from "../redux/userSlice";
+import axios from "axios";
 import { StatusBar } from "react-native";
+import { BASE_URL } from "./Config";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Profile = () => {
   const navigation = useNavigation();
+  const [userName, setUserName] = useState('')
   const dispatch = useDispatch();
 
-  const handleLogout = async () => {
+  const getData = async () => {
     try {
-      let removeAccessToken = await AsyncStorage.removeItem("accessToken");
-      dispatch(removeToken(removeAccessToken));
-      console.log("Logout:", "Logout successfully");
-      navigation.navigate("Login");
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      if (accessToken) {
+        axios.get(`${BASE_URL}/ecommerce/users/my`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        })
+        .then(res => {
+          console.log(res.data);
+          dispatch(setToken(res.data));
+          setUserName(res.data.data.name);
+        })
+        .catch(error => {
+          console.log("fetching user data error", error);
+        });
+      } else {
+        console.log("No access token found");
+      }
     } catch (error) {
-      console.log("Logout error", error);
+      console.log("AsyncStorage error", error);
     }
+  };
+  useEffect(()=>{
+    getData()
+  },[])
+
+  const handleLogout = async () => {
+    // try {
+    //   let removeAccessToken = await AsyncStorage.removeItem("accessToken");
+    //   dispatch(removeToken(removeAccessToken));
+    //   console.log("Logout:", "Logout successfully");
+    //   navigation.navigate("Login");
+    // } catch (error) {
+    //   console.log("Logout error", error);
+    // }
 
   };
 
@@ -44,7 +75,7 @@ const Profile = () => {
           <Ionicons name="settings-outline" size={28} />
         </TouchableOpacity>
         <View style={profileUI.userInfo}>
-          <Text style={profileUI.userName}>Umanga Shrestha</Text>
+          <Text style={profileUI.userName}>{userName}</Text>
         </View>
         <View style={profileUI.detailsContainer}>
           <Text style={profileUI.details}>Wishlist</Text>
