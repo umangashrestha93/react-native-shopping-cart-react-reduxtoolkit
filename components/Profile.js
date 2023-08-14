@@ -19,14 +19,14 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    try {
-      await AsyncStorage.removeItem("accessToken");
-      dispatch(removeToken());
-      console.log("Logout:", "Logout successfully");
-      navigation.navigate("Login");
-    } catch (error) {
-      console.log("Logout error", error);
-    }
+    // try {
+    //   await AsyncStorage.removeItem("accessToken");
+    //   dispatch(removeToken());
+    //   console.log("Logout:", "Logout successfully");
+    //   navigation.navigate("Login");
+    // } catch (error) {
+    //   console.log("Logout error", error);
+    // }
   };
 
   return (

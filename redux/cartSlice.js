@@ -13,7 +13,6 @@ const cartSlice = createSlice({
             }else{
                 state.push({...action.payload, quantity: 1})
             }
-            
         },
         incrementQuantity:(state, action)=>{
                 const itemInCart = state.find((item)=> item.id == action.payload.id)

@@ -23,8 +23,9 @@ const SignupScreen = () => {
     })
     .then((res)=>{
         console.log(res.data)
-        dispatch(setToken(res.data.accessToken))
-        AsyncStorage.setItem("accessToken", data.accessToken)
+        let userInfo = res.data
+        dispatch(setToken(userInfo))
+        // AsyncStorage.setItem("userInfo", userInfo.data)
         setName('')
         setEmail('')
         setPass('')

@@ -22,9 +22,10 @@ const LoginScreen = () => {
             password: password
         })
         .then(res=>{
-            console.log(res.data)
-            dispatch(setToken(res.data.accessToken))
-            AsyncStorage.setItem("data", res.data)
+            console.log(res.data.data)
+            let userToken = res.data.data
+            dispatch(setToken(userToken.accessToken))
+            AsyncStorage.setItem("accessToken",userToken.accessToken)
             setIsLoading(false)
             setEmail('')
             setPassword('')
