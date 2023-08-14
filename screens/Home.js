@@ -18,8 +18,8 @@ import { Toast } from "react-native-toast-message";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  // const [search, setSearch] = useState("");
-  // const [filterProducts, setFilterProducts] = useState([])
+  const [search, setSearch] = useState("");
+  const [filterProducts, setFilterProducts] = useState([])
   // const cardItems = useSelector((state)=> state.cart)
   const dispatch = useDispatch();
 
@@ -38,6 +38,18 @@ const Home = () => {
       console.log(error);
     }
   };
+
+  useEffect(()=>{
+    const filterProduct = filter(products, (product)=>{
+      const productName = product.title.toLowerCase();
+      const productPrice = product.price.toString();
+      const searchText = search.toLowerCase()
+
+      return productName.includes(searchText) || productPrice.includes(searchText)
+    })
+    setFilterProducts(filterProduct)
+
+  },[search, products])
 
   // const handleSearch = async (text) => {
   //   setSearch(text);
@@ -90,6 +102,7 @@ const Home = () => {
             />
             <TextInput
               placeholder="search product"
+              onChangeText={(text)=>setSearch(text)}
               style={{
                 marginLeft: 10,
                 fontSize: 15,
@@ -100,7 +113,7 @@ const Home = () => {
             />
           </View>
     </View>
-          {products.map((product) => (
+          {filterProducts.map((product) => (
             <View style={styles.productContainer} key={product.id}>
               <Image
                 source={{ uri: product.image }}

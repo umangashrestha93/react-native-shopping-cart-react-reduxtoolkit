@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../components/Config'
@@ -43,6 +43,7 @@ const LoginScreen = () => {
     }
 
   return (
+    <>
     <View style={LoginUI.loginContainer}>
         <View style={LoginUI.logoContainer}>
             <Image source={require('../assets/images/Logo2.png')}/>
@@ -66,6 +67,7 @@ const LoginScreen = () => {
             </TouchableOpacity>
         </View>
     </View>
+    </>
   )
 }
 

@@ -15,6 +15,7 @@ import Checkout from './screens/Checkout'
 import Profile from './components/Profile'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { setToken } from './redux/userSlice'
+import { StatusBar } from 'react-native'
 
 const Stack = createStackNavigator()
 // const CartIcon = () => {
@@ -76,7 +77,7 @@ const Stack = createStackNavigator()
  function StackNavigator(){
   const {token} = useSelector((state)=> state.user)
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const loadInitials = async()=>{
     const accessToken = await AsyncStorage.getItem("accessToken")
@@ -95,11 +96,11 @@ const Stack = createStackNavigator()
 
   return(
     <Stack.Navigator >
-         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+         {/* <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
         <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Tab' component={TabNavigator} options={{headerShown: false}}/>
-          <Stack.Screen name='checkout' component={Checkout}/>
-      {/* {token ? (
+          <Stack.Screen name='checkout' component={Checkout}/> */}
+      {token ? (
         <>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
         <Stack.Screen name='Register' component={SignupScreen} options={{headerShown: false}}/>
@@ -111,7 +112,7 @@ const Stack = createStackNavigator()
           <Stack.Screen name='checkout' component={Checkout}/>
           </>
       )}
-           */}
+          
     </Stack.Navigator>
   )
  }

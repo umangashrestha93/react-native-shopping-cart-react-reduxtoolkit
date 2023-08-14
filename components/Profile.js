@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeToken } from "../redux/userSlice";
+import { StatusBar } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -19,17 +20,20 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    // try {
-    //   await AsyncStorage.removeItem("accessToken");
-    //   dispatch(removeToken());
-    //   console.log("Logout:", "Logout successfully");
-    //   navigation.navigate("Login");
-    // } catch (error) {
-    //   console.log("Logout error", error);
-    // }
+    try {
+      let removeAccessToken = await AsyncStorage.removeItem("accessToken");
+      dispatch(removeToken(removeAccessToken));
+      console.log("Logout:", "Logout successfully");
+      navigation.navigate("Login");
+    } catch (error) {
+      console.log("Logout error", error);
+    }
+
   };
 
   return (
+    <>
+  
     <View style={profileUI.mainContainer}>
       <View style={profileUI.firstDiv}></View>
       <View style={profileUI.secondDiv}>
@@ -56,6 +60,7 @@ const Profile = () => {
         </View>
       </View>
     </View>
+    </>
   );
 };
 

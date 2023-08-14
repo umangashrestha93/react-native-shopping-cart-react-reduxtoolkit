@@ -108,8 +108,8 @@ const Cart = () => {
                 >
                   <Text style={style.plusBtnText}>+</Text>
                 </TouchableOpacity>
-                <Modal transparent={true} visible={showModal} animationType="slide">
-                  <View style={style.modalContainer}>
+                <Modal transparent={true} visible={showModal} animationType="fade" >
+                  <TouchableOpacity style={style.modalContainer} activeOpacity={1} onPress={()=>setShowModal(false)}>
                     <View style={style.modalView}>
                       <Text style={style.modalText}>
                         Are you sure you want to remove this item?
@@ -129,7 +129,7 @@ const Cart = () => {
                         </TouchableOpacity>
                       </View>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 </Modal>
 
                 <TouchableOpacity
@@ -296,6 +296,7 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: 'rgba(0,0,0,0.5)'
     // backgroundColor: '#176B87'
   },
 
